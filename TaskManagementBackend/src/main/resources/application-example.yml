@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: TaskManagement
+
+  main:
+    banner-mode: off
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/task_management
+    username: YOUR_DB_USERNAME
+    password: YOUR_DB_PASSWORD
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://cognito-idp.YOUR_REGION.amazonaws.com/YOUR_POOL_ID
+
+server:
+  port: 8000
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security.oauth2: DEBUG
+
+# 🔐 AWS Cognito Client Credentials and Redirect
+cognito:
+  client-id: YOUR_COGNITO_CLIENT_ID
+  client-secret: "" # Optional: if you created an app client without secret, leave blank
+  redirect-uri: http://localhost:5173/cognito-callback
+  token-uri: https://YOUR_COGNITO_DOMAIN.auth.YOUR_REGION.amazoncognito.com/oauth2/token
